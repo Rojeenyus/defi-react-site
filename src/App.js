@@ -1,22 +1,21 @@
-import React from 'react'
-import './App.css';
-import Navbar from './components/navbar/Navbar';
-import Hero from './components/hero/Hero'
-import About from './components/about/About';
-import Developer from './components/developer/Developer';
-import Subscribe from './components/subscribe/Subscribe';
-import Footer from './components/footer/Footer';
+import React from "react";
+import "./App.css";
+import Landing from "./Landing";
+import Dex from "./Dex";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
+import Swap from "./components/app/swap/Swap";
 
 function App() {
   return (
-    <div>
-      <Navbar />
-      <Hero />
-      <About />
-      <Developer />
-      <Subscribe />
-      <Footer />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route index element={<Landing />}></Route>
+        <Route path="dex">
+          <Route index element={<Swap />}></Route>;
+          <Route path="swap" element={<Swap />}></Route>;
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
