@@ -1,0 +1,90 @@
+.footers {
+  padding: 0 !important;
+  bottom: 0px;
+  position: fixed;
+}
+
+.footers .containers {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 24px;
+  padding: 16px;
+  height: 80px;
+}
+
+.active {
+  top: 75px !important;
+  display: block !important;
+}
+
+.containers .icons .navs {
+  column-gap: 24px;
+  display: flex;
+}
+
+.footer-icon {
+  height: 2rem !important;
+  width: 2rem !important;
+  cursor: pointer;
+}
+
+.footer-ul {
+  padding: 0;
+}
+
+.containers h3 {
+  margin-left: 1rem;
+  color: #f4eeff;
+  flex-grow: 1;
+  text-align: left;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: fixed;
+  top: -300px;
+  z-index: 10;
+  transform: translate(0px, 0px);
+  transition: all 0.2s ease-out 0s;
+  display: block !important;
+  width: 100%;
+}
+.dropdown .boxs {
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid rgb(73, 85, 97);
+  box-shadow: none;
+  background-color: rgb(11, 24, 37);
+  opacity: 1;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+.footer-ul li span {
+  padding-left: 1rem;
+}
+
+li h3 {
+  cursor: pointer;
+}
+
+@media screen and (max-width: 940px) {
+  .nav-button {
+    flex-grow: 1;
+    text-align: right;
+  }
+  .footers .containers {
+    display: none;
+  }
+  .footer-ul {
+    display: flex;
+    flex-direction: column;
+  }
+  .footer-ul li {
+    padding-bottom: 1rem;
+  }
+}

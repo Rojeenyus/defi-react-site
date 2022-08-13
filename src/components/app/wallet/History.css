@@ -1,0 +1,53 @@
+.history {
+  border-radius: 5px;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 7%);
+  overflow: hidden;
+  background: rgb(54, 68, 83);
+  width: 20rem;
+}
+
+.c-activity-list__item {
+  display: flex;
+  padding: 0.5rem 0.5rem;
+  border-bottom: 1px solid rgb(101, 99, 99);
+  align-items: center;
+  cursor: pointer;
+  color: #f4eeff;
+}
+
+.c-activity-list__date {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 30px;
+  margin-right: 20px;
+  align-items: center;
+  color: #f4eeff;
+}
+.c-activity-list__month {
+  line-height: 13px;
+  font-size: 13px;
+}
+
+.c-activity-list__day {
+  font-size: 18px;
+  line-height: 18px;
+  font-weight: 300;
+}
+.c-activity-list__meta {
+  flex: 1 1 auto;
+  overflow: hidden;
+  font-size: 14px;
+}
+.red {
+  color: #e16063;
+}
+
+.green {
+  color: green;
+}
+
+@media screen and (max-width: 940px) {
+  .history {
+    width: 100%;
+  }
+}

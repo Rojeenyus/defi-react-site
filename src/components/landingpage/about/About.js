@@ -3,6 +3,7 @@ import "./About.css";
 import { SiHiveBlockchain, SiStrapi, SiFsecure } from "react-icons/si";
 import { VscServerProcess } from "react-icons/vsc";
 import AboutCard from "./AboutCard";
+import { Link } from "react-router-dom";
 
 const About = () => {
   return (
@@ -44,9 +45,9 @@ const About = () => {
             />
           </div>
         </div>
-        <a href="/" className="btn">
+        <Link to="/dex" className="btn">
           Use Defi
-        </a>
+        </Link>
       </div>
     </div>
   );

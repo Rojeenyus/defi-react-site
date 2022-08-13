@@ -26,7 +26,7 @@ const Navbar = () => {
           </li>
           <li className="nav-item">
             <a className="btn" href="/">
-              <Link to="/swap">Use Defi</Link>
+              <Link to="/dex">Use Defi</Link>
             </a>
           </li>
         </ul>

@@ -1,0 +1,57 @@
+.jqpTxa {
+  padding: 4px 20px;
+  height: 56px;
+  display: grid;
+  grid-template-columns: auto minmax(auto, 1fr) auto minmax(0px, 72px);
+  gap: 16px;
+  cursor: pointer;
+  opacity: 1;
+}
+.dZbxzg {
+  width: 100%;
+  display: flex;
+  padding: 0px;
+  -webkit-box-align: center;
+  align-items: center;
+}
+.eLAcZi {
+  box-sizing: border-box;
+  margin: 0px;
+  min-width: 0px;
+}
+
+.buCMyK {
+  width: 24px;
+  height: 24px;
+}
+.gvLCNP {
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+}
+.bCARSy {
+  width: 72px;
+}
+.jlffp {
+  color: rgb(255, 255, 255);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+.currency-container {
+  position: relative;
+  height: 392px;
+  width: 100%;
+  overflow: auto;
+  will-change: transform;
+  direction: ltr;
+  display: flex;
+  flex-direction: column;
+}
+
+.currency-map {
+  left: 0px;
+  top: 0px;
+  height: 56px;
+  width: 100%;
+}

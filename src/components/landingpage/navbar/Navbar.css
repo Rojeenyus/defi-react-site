@@ -37,10 +37,19 @@ a {
   color: #f4eeff;
 }
 
+.active {
+  background-color: rgb(95, 104, 113);
+  border-radius: 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 @media screen and (max-width: 940px) {
   .hamburger {
     display: block;
     padding-right: 1rem;
+    cursor: pointer;
   }
 
   .nav {

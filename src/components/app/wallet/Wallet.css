@@ -1,0 +1,11 @@
+.wallet-flex {
+  display: flex;
+  width: 70%;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 940px) {
+  .wallet-flex {
+    flex-direction: column;
+  }
+}

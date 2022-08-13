@@ -1,0 +1,248 @@
+.the-body {
+  color: #f4eeff;
+  margin: auto;
+}
+
+svg {
+  fill: #f4eeff;
+}
+
+/*body*/
+.padding-container {
+  padding-top: 1rem;
+  padding-bottom: 7rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.exchange {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.box {
+  border-radius: 24px;
+  max-width: 436px;
+  width: 100%;
+  background: rgb(11, 24, 37);
+}
+.top-part {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px;
+  border-bottom: 1px solid rgb(54, 68, 83);
+}
+.left-letters {
+  display: flex;
+  align-items: center;
+  margin-right: 16px;
+}
+h2 {
+  margin-top: 0;
+}
+.left-letters-flex {
+  display: flex;
+  flex-direction: column;
+}
+.right-icons {
+  display: flex;
+  align-items: center;
+}
+.setting-icon {
+  border: none;
+  margin-right: 5px;
+  margin-left: 5px;
+  background: rgb(11, 24, 37);
+  cursor: pointer;
+}
+.setting-icon-only {
+  fill: rgb(205, 161, 111);
+}
+.first-box {
+  display: grid;
+  grid-auto-rows: auto;
+  row-gap: 12px;
+  width: 100%;
+}
+/**/
+.first-boxx,
+.fourth-boxx {
+  display: flex;
+  flex-flow: column nowrap;
+  position: relative;
+  border-radius: 20px;
+  background-color: rgb(54, 68, 83);
+}
+.fromm {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  padding: 0.75rem 1rem 0px;
+}
+.fromm-letters {
+  font-weight: 400;
+  line-height: 1.5;
+  font-size: 14px;
+}
+.amount {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  padding: 0.75rem 0.75rem 0.75rem 1rem;
+}
+.amount-input {
+  width: 0px;
+  position: relative;
+  font-weight: 500;
+  outline: none;
+  border: none;
+  flex: 1 1 auto;
+  background-color: transparent;
+  font-size: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0px;
+  appearance: textfield;
+  color: #f4eeff;
+}
+.three-part-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.select-currency {
+  border: none;
+  cursor: pointer;
+  background-color: rgb(54, 68, 83);
+}
+.currency-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+}
+.currency-call {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #f4eeff;
+}
+/**/
+.percent-box {
+  display: grid;
+  grid-template-rows: auto;
+}
+.percent-boxx {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.percent-button,
+.btn {
+  flex-grow: 1;
+  align-items: center;
+  border: 0px;
+  border-radius: 50px;
+  box-shadow: rgb(14 14 44 / 40%) 0px -1px 0px 0px inset;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: inherit;
+  font-weight: 600;
+  justify-content: center;
+  letter-spacing: 0.03em;
+  line-height: 1;
+  opacity: 1;
+  outline: 0px;
+  height: 20px;
+  font-size: 12px;
+  background-image: linear-gradient(
+    45deg,
+    var(--primary-purple) 0%,
+    var(--primary-blue) 100%
+  );
+  color: #f4eeff;
+  margin-left: 2px;
+  margin-right: 2px;
+  padding: 16px;
+}
+.percent-button:hover {
+  background-color: #fef1de;
+}
+/**/
+.arrow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.arrow-icon {
+  align-self: center;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+/**/
+.equivalent {
+  width: 100%;
+  display: flex;
+  padding: 0px;
+  justify-content: space-between;
+}
+.price-equivalent {
+  font-size: 12px;
+  font-weight: bold;
+}
+.per-per {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+.swap-letter {
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 1.5;
+}
+.switch-button {
+  border: none;
+  background-color: rgb(11, 24, 37);
+  cursor: pointer;
+  fill: #f4eeff;
+}
+/**/
+.trade-button,
+.btn {
+  padding: 24px;
+  font-size: 16px;
+}
+/* extra info */
+.exchange-bottom {
+  margin-top: 15px;
+}
+.extra-info {
+  padding: 24px;
+  display: grid;
+  grid-auto-rows: auto;
+}
+.layer-grid {
+  justify-content: space-between;
+  width: 100%;
+  display: flex;
+  padding: 0px;
+  align-items: center;
+}
+.layer-grid-left,
+.layer-grid-right {
+  color: rgb(68, 79, 114);
+  font-weight: 400;
+  line-height: 1.5;
+  font-size: 14px;
+}
+.exchange-bottom div {
+  color: #f4eeff;
+}
+.no-border {
+  border: none;
+}

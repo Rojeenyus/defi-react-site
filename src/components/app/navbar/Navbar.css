@@ -1,0 +1,57 @@
+.nav-button {
+  margin-right: 1rem;
+}
+
+.containers {
+  margin: 0 1rem 0 1rem !important;
+  max-width: 100% !important;
+}
+
+.navs {
+  padding: 0 10rem;
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navs > li {
+  width: 25%;
+  height: 100%;
+  list-style: none;
+  text-align: center;
+}
+
+@media screen and (max-width: 940px) {
+  .navs {
+    position: fixed;
+    left: 0px;
+    right: 0px;
+    bottom: 15%;
+    z-index: 10;
+    width: calc(100% - 47px);
+    margin: auto;
+    transform: translateY(100px);
+    animation: 0.4s ease-out 0s 1 normal forwards running dEzeDQ;
+    background-color: rgb(30, 41, 54);
+    border-radius: 24px;
+    box-shadow: rgb(39 55 76 / 10%) 0px 1px 2px, rgb(39 55 76 / 10%) 0px 0px 8px;
+    padding: 0;
+  }
+
+  .navs a {
+    font-size: 1rem;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    border-radius: 1rem;
+  }
+
+  .navs > li {
+    width: 25%;
+    height: 100%;
+    list-style: none;
+    text-align: center;
+  }
+}
