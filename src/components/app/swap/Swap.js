@@ -29,7 +29,6 @@ function Swap() {
     buyStock !== "USD"
       ? (myData = {
           transaction: {
-            user_id: sessionStorage.getItem("id"),
             quantity: buyAmount,
             action: 1,
             stock_id: buyStockId,
@@ -38,13 +37,15 @@ function Swap() {
         })
       : (myData = {
           transaction: {
-            user_id: sessionStorage.getItem("id"),
             quantity: sellAmount,
             action: 0,
             stock_id: sellStockId,
             price: sellPrice,
           },
         });
+
+    console.log(myData);
+    console.log(Cookies.get("auth"));
 
     try {
       const response = await axios.post(urltrade, myData, {
@@ -71,7 +72,6 @@ function Swap() {
     let headers = {
       headers: {
         "Content-Type": "Application/json",
-        Authorization: `JWT ${Cookies.get("auth")}`,
       },
     };
 

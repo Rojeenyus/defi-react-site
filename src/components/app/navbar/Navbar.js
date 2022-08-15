@@ -23,10 +23,8 @@ const Navbar = ({
   let [active, setActive] = useState(location.pathname);
   let [signIn, setSignIn] = useState(true);
   let [wallet, setWallet] = useState(false);
-  let [transactions, setTransactions] = useState({
-    buy: [{ stock_id: 0 }],
-    sell: [{ stock_id: 0 }],
-  });
+  let [find, setFind] = useState({});
+  let [transactions, setTransactions] = useState(undefined);
   let urltransaction =
     "https://ancient-beyond-96499.herokuapp.com/transactions";
 
@@ -36,10 +34,12 @@ const Navbar = ({
     setActive(location.pathname);
   }, [location.pathname]);
 
-  let handleWallet = async (e) => {
+  let handleWallet = (e) => {
     e.preventDefault();
     setWallet(!wallet);
+  };
 
+  useEffect(async () => {
     let headers = {
       headers: {
         "Content-Type": "Application/json",
@@ -53,7 +53,23 @@ const Navbar = ({
     } catch (error) {
       console.log(error.response);
     }
-  };
+  }, []);
+
+  const urlstock = "https://ancient-beyond-96499.herokuapp.com/stocks";
+
+  useEffect(async (e) => {
+    let headers = {
+      headers: {
+        "Content-Type": "Application/json",
+      },
+    };
+    try {
+      const response = await axios.get(urlstock, headers);
+      setFind(response.data);
+    } catch (error) {
+      console.log(error.response);
+    }
+  }, []);
 
   return (
     <>
@@ -62,6 +78,7 @@ const Navbar = ({
           setWallet={setWallet}
           wallet={wallet}
           transactions={transactions}
+          find={find}
         />
       ) : (
         ""

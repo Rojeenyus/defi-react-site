@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Wallet.css";
 import Cookies from "js-cookie";
 import History from "./History";
 import Currencies from "./Currencies";
+import axios from "axios";
 
-function Wallet({ setWallet, wallet, transactions }) {
+function Wallet({ setWallet, wallet, transactions, find }) {
   let handleDisconnect = () => {
     sessionStorage.removeItem("id");
     sessionStorage.removeItem("email");
@@ -26,7 +27,7 @@ function Wallet({ setWallet, wallet, transactions }) {
           </div>
           <div className="wallet-container">
             <h1>History</h1>
-            <History></History>
+            <History transactions={transactions} find={find}></History>
           </div>
         </div>
         <a onClick={handleDisconnect} style={{ cursor: "pointer" }}>

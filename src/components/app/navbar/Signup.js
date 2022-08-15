@@ -1,13 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Login.css";
 import axios from "axios";
+import Cookies from "universal-cookie";
 
-const Signup = ({ setSignIn, signIn, modal, setModal, setId, setEmail }) => {
+const Signup = ({
+  setSignIn,
+  signIn,
+  modal,
+  setModal,
+  setId,
+  setEmail,
+  email,
+}) => {
   const [emailAddress, setEmailAddress] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
+  const [auth, setAuth] = useState("");
   let data = {};
+  let authkey = {};
   const url = "https://ancient-beyond-96499.herokuapp.com/users";
+  const urlauth = "https://ancient-beyond-96499.herokuapp.com/user_token";
+  const cookies = new Cookies();
 
   let handleSignIn = () => setSignIn(!signIn);
   let handleModal = () => setModal(!modal);
@@ -18,6 +31,21 @@ const Signup = ({ setSignIn, signIn, modal, setModal, setId, setEmail }) => {
         email: email,
         password: password,
         confirm_password: passwordConfirmation,
+      },
+    };
+  }
+
+  function login(email, password) {
+    data = {
+      user: {
+        email: email,
+        password: password,
+      },
+    };
+    authkey = {
+      auth: {
+        email: email,
+        password: password,
       },
     };
   }
@@ -41,6 +69,21 @@ const Signup = ({ setSignIn, signIn, modal, setModal, setId, setEmail }) => {
       console.log(error.response);
     }
   };
+
+  useEffect(async () => {
+    login(emailAddress, password);
+    try {
+      const response = await axios.post(urlauth, authkey, {
+        headers: {
+          "Content-Type": "Application/json",
+        },
+      });
+      setAuth(response.data.jwt);
+      cookies.set("auth", response.data.jwt);
+    } catch (error) {
+      console.log(error.response);
+    }
+  }, [email]);
 
   return (
     <div className="modal">

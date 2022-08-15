@@ -1,35 +1,57 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./Currencies.css";
+import axios from "axios";
 
 function Currencies({ transactions }) {
-  let myWallet = {};
+  let [data, setData] = useState({});
+  let [myWallet, setMyWallet] = useState([]);
+  let [myCurrencies, setMyCurrencies] = useState([]);
+  const urlstock = "https://ancient-beyond-96499.herokuapp.com/stocks";
+  let whole = {};
 
-  let pushData = (currency, amount) => {
-    myWallet = {
+  let singelData = (currency, amount) => {
+    let myallet = {
       currency: currency,
       amount: amount,
     };
   };
 
-  let showCurrency = () => {};
+  let pushData = (x) => {
+    setMyWallet((data) => {
+      return [x, ...data];
+    });
+  };
 
-  useEffect(() => {
-    let filteredbuy = [
-      ...new Set(transactions.buy.map((item) => item.stock_id)),
-    ];
-    let filteredsell = [
-      ...new Set(transactions.sell.map((item) => item.stock_id)),
-    ];
-    filteredbuy = filteredbuy.concat(filteredsell);
+  let complete = (myCurrencies) => {};
 
+  useEffect(async () => {
+    let filteredbuy = [...new Set(transactions.map((item) => item.stock_id))];
     function onlyUnique(value, index, self) {
       return self.indexOf(value) === index;
     }
-
     var unique = filteredbuy.filter(onlyUnique);
-
     console.log(unique);
-  }, [transactions]);
+
+    let headers = {
+      headers: {
+        "Content-Type": "Application/json",
+      },
+    };
+
+    try {
+      const response = await axios.get(urlstock, headers);
+      setData(response.data);
+      let result = response.data;
+      let currencyName = unique.map((x) => {
+        return result.find(({ id }) => {
+          return id === x;
+        }).name;
+      });
+      setMyCurrencies(currencyName);
+    } catch (error) {
+      console.log(error.response);
+    }
+  }, []);
 
   return (
     <>
@@ -66,23 +88,24 @@ function Currencies({ transactions }) {
             </span>
           </div>
         </div>
-
-        <div className="css-1iyhun0">
-          <div className="css-1n0b3ga">
-            <div className="css-6550wj">
-              <img
-                className="currency-icon"
-                src="https://mm.finance//images/tokens/0xc21223249CA28397B4B6541dfFaEcC539BfF0c59.svg"
-              />
-              USD
+        {myCurrencies.map((currency) => {
+          return (
+            <div className="css-1iyhun0">
+              <div className="css-1n0b3ga">
+                <div className="css-6550wj">
+                  <img
+                    className="currency-icon"
+                    src="https://mm.finance//images/tokens/0xc21223249CA28397B4B6541dfFaEcC539BfF0c59.svg"
+                  />
+                  {currency}
+                </div>
+              </div>
+              <div className="css-rfpnma">
+                <span className="css-1lxfzdv">{0}</span>
+              </div>
             </div>
-          </div>
-          <div className="css-rfpnma">
-            <span className="css-1lxfzdv">
-              {sessionStorage.getItem("money")}
-            </span>
-          </div>
-        </div>
+          );
+        })}
       </div>
     </>
   );
