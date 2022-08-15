@@ -7,6 +7,7 @@ import Login from "./Login";
 import Signup from "./Signup";
 import Button from "./Button";
 import Wallet from "./../wallet/Wallet";
+import Cookies from "js-cookie";
 
 const Navbar = ({
   setClick,
@@ -22,6 +23,12 @@ const Navbar = ({
   let [active, setActive] = useState(location.pathname);
   let [signIn, setSignIn] = useState(true);
   let [wallet, setWallet] = useState(false);
+  let [transactions, setTransactions] = useState({
+    buy: [{ stock_id: 0 }],
+    sell: [{ stock_id: 0 }],
+  });
+  let urltransaction =
+    "https://ancient-beyond-96499.herokuapp.com/transactions";
 
   const handleClick = () => setClick(!click);
 
@@ -29,11 +36,36 @@ const Navbar = ({
     setActive(location.pathname);
   }, [location.pathname]);
 
-  let handleWallet = () => setWallet(!wallet);
+  let handleWallet = async (e) => {
+    e.preventDefault();
+    setWallet(!wallet);
+
+    let headers = {
+      headers: {
+        "Content-Type": "Application/json",
+        Authorization: `JWT ${Cookies.get("auth")}`,
+      },
+    };
+
+    try {
+      const response = await axios.get(urltransaction, headers);
+      setTransactions(response.data.data.transactions);
+    } catch (error) {
+      console.log(error.response);
+    }
+  };
 
   return (
     <>
-      {wallet ? <Wallet setWallet={setWallet} wallet={wallet} /> : ""}
+      {wallet ? (
+        <Wallet
+          setWallet={setWallet}
+          wallet={wallet}
+          transactions={transactions}
+        />
+      ) : (
+        ""
+      )}
       {signIn ? (
         <>
           {modal ? (

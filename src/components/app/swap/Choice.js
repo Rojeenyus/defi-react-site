@@ -8,15 +8,25 @@ function Choice({
   buySellStock,
   setBuyStock,
   setSellStock,
+  setBuyPrice,
+  setSellPrice,
+  setSellStockId,
+  setBuyStockId,
 }) {
   let handleChoice = () => setChoice(!choice);
 
-  let handleChoose = (name) => {
-    buySellStock ? setBuyStock(name) : setSellStock(name);
+  let handleChoose = (name, price, id) => {
+    if (buySellStock) {
+      setBuyStock(name);
+      setBuyPrice(price);
+      setBuyStockId(id);
+    } else {
+      setSellStock(name);
+      setSellPrice(price);
+      setSellStockId(id);
+    }
     setChoice(!choice);
   };
-
-  //   useEffect(handleChoose, [choice]);
 
   return (
     <div className="modal">
@@ -31,7 +41,7 @@ function Choice({
           <div className="currency-container">
             <div
               className="sc-ksPlPm sc-kpXpMQ sc-czgevV sc-kehFtl eLAcZi dZbxzg giohnb jqpTxa currency-map"
-              onClick={handleChoose("USD")}
+              onClick={() => handleChoose("USD", 1, 0)}
             >
               <img
                 className="sc-lbNHPp buCMyK"
@@ -53,7 +63,7 @@ function Choice({
                 <div
                   className="sc-ksPlPm sc-kpXpMQ sc-czgevV sc-kehFtl eLAcZi dZbxzg giohnb jqpTxa currency-map"
                   key={id}
-                  onClick={handleChoose(name.name)}
+                  onClick={() => handleChoose(name.name, name.price, name.id)}
                 >
                   <img
                     className="sc-lbNHPp buCMyK"

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Swap.css";
 import Button from "../navbar/Button";
 import { useOutletContext } from "react-router-dom";
@@ -11,9 +11,57 @@ function Swap() {
   let [choice, setChoice] = useState(false);
   let [buySellStock, setBuySellStock] = useState();
   let [buyStock, setBuyStock] = useState("");
+  let [buyPrice, setBuyPrice] = useState("");
+  let [sellPrice, setSellPrice] = useState("");
   let [sellStock, setSellStock] = useState("");
   let [data, setData] = useState([]);
+  let [buyAmount, setBuyAmount] = useState(0);
+  let [sellAmount, setSellAmount] = useState(0);
+  let [buyStockId, setBuyStockId] = useState(0);
+  let [sellStockId, setSellStockId] = useState(0);
   const urlstock = "https://ancient-beyond-96499.herokuapp.com/stocks";
+  const urltrade = "https://ancient-beyond-96499.herokuapp.com/transactions";
+
+  let handleSwap = async (e) => {
+    e.preventDefault();
+    let myData = {};
+
+    buyStock !== "USD"
+      ? (myData = {
+          transaction: {
+            user_id: sessionStorage.getItem("id"),
+            quantity: buyAmount,
+            action: 1,
+            stock_id: buyStockId,
+            price: buyPrice,
+          },
+        })
+      : (myData = {
+          transaction: {
+            user_id: sessionStorage.getItem("id"),
+            quantity: sellAmount,
+            action: 0,
+            stock_id: sellStockId,
+            price: sellPrice,
+          },
+        });
+
+    try {
+      const response = await axios.post(urltrade, myData, {
+        headers: {
+          "Content-Type": "Application/json",
+          Authorization: `JWT ${Cookies.get("auth")}`,
+        },
+      });
+      console.log(response.data);
+    } catch (error) {
+      console.log(error.response);
+    }
+  };
+
+  useEffect(() => {
+    setBuyAmount(parseFloat(sellAmount) / (buyPrice / sellPrice));
+  }, [sellAmount]);
 
   let handleChoiceFalse = async (e) => {
     e.preventDefault();
@@ -65,6 +113,10 @@ function Swap() {
           buySellStock={buySellStock}
           setBuyStock={setBuyStock}
           setSellStock={setSellStock}
+          setBuyPrice={setBuyPrice}
+          setSellPrice={setSellPrice}
+          setBuyStockId={setBuyStockId}
+          setSellStockId={setSellStockId}
         ></Choice>
       ) : (
         ""
@@ -115,6 +167,7 @@ function Swap() {
                         placeholder="0.0"
                         minLength="1"
                         maxLength="79"
+                        onChange={(e) => setSellAmount(e.target.value)}
                       />
                       <button
                         className="select-currency"
@@ -168,6 +221,8 @@ function Swap() {
                         placeholder="0.0"
                         minLength="1"
                         maxLength="79"
+                        value={buyAmount}
+                        readOnly
                       />
                       <button
                         className="select-currency"
@@ -194,9 +249,13 @@ function Swap() {
                   </div>
                   <div className="third-boxx">
                     <div className="equivalent">
-                      <div className="price-equivalent">Price</div>
+                      <div className="price-equivalent" onClick={handleSwap}>
+                        Price
+                      </div>
                       <div className="per-per">
-                        <div className="swap-letter">1 BTC per USD</div>
+                        <div className="swap-letter">
+                          {buyPrice / sellPrice} {buyStock} per {sellStock}
+                        </div>
                         <button className="switch-button">
                           <svg
                             viewBox="0 0 24 24"
@@ -217,12 +276,17 @@ function Swap() {
                 {id === undefined || id === null ? (
                   <Button setModal={setModal} modal={modal}></Button>
                 ) : (
-                  <button className="percent-button trade-button">Swap</button>
+                  <button
+                    className="percent-button trade-button"
+                    onClick={handleSwap}
+                  >
+                    Swap
+                  </button>
                 )}
               </div>
             </div>
           </div>
-          <div className="exchange exchange-bottom">
+          {/* <div className="exchange exchange-bottom">
             <div className="box">
               <div className="extra-info">
                 <div className="layer-grid">
@@ -239,7 +303,7 @@ function Swap() {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </>

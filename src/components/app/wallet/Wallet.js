@@ -4,7 +4,7 @@ import Cookies from "js-cookie";
 import History from "./History";
 import Currencies from "./Currencies";
 
-function Wallet({ setWallet, wallet }) {
+function Wallet({ setWallet, wallet, transactions }) {
   let handleDisconnect = () => {
     sessionStorage.removeItem("id");
     sessionStorage.removeItem("email");
@@ -22,7 +22,7 @@ function Wallet({ setWallet, wallet }) {
         <div className="wallet-flex">
           <div className="wallet-container padding-right">
             <h1>Wallet</h1>
-            <Currencies></Currencies>
+            <Currencies transactions={transactions}></Currencies>
           </div>
           <div className="wallet-container">
             <h1>History</h1>

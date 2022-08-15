@@ -1,7 +1,36 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Currencies.css";
 
-function Currencies() {
+function Currencies({ transactions }) {
+  let myWallet = {};
+
+  let pushData = (currency, amount) => {
+    myWallet = {
+      currency: currency,
+      amount: amount,
+    };
+  };
+
+  let showCurrency = () => {};
+
+  useEffect(() => {
+    let filteredbuy = [
+      ...new Set(transactions.buy.map((item) => item.stock_id)),
+    ];
+    let filteredsell = [
+      ...new Set(transactions.sell.map((item) => item.stock_id)),
+    ];
+    filteredbuy = filteredbuy.concat(filteredsell);
+
+    function onlyUnique(value, index, self) {
+      return self.indexOf(value) === index;
+    }
+
+    var unique = filteredbuy.filter(onlyUnique);
+
+    console.log(unique);
+  }, [transactions]);
+
   return (
     <>
       <div className="css-uq1pv2">
@@ -10,7 +39,7 @@ function Currencies() {
           focusable="false"
           data-prefix="fas"
           data-icon="wallet"
-          class="svg-inline--fa fa-wallet fa-lg "
+          className="svg-inline--fa fa-wallet fa-lg "
           role="img"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 512 512"
@@ -26,15 +55,18 @@ function Currencies() {
             <div className="css-6550wj">
               <img
                 className="currency-icon"
-                src="https://assets.coingecko.com/coins/images/1/large/bitcoin.png"
+                src="https://mm.finance//images/tokens/0xc21223249CA28397B4B6541dfFaEcC539BfF0c59.svg"
               />
-              BTC
+              USD
             </div>
           </div>
           <div className="css-rfpnma">
-            <span className="css-1lxfzdv">0.00000</span>
+            <span className="css-1lxfzdv">
+              {sessionStorage.getItem("money")}
+            </span>
           </div>
         </div>
+
         <div className="css-1iyhun0">
           <div className="css-1n0b3ga">
             <div className="css-6550wj">
